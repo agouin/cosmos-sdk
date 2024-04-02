@@ -49,6 +49,7 @@ type (
 		SetGasLimit(limit uint64)
 		SetTimeoutHeight(height uint64)
 		SetFeeGranter(feeGranter sdk.AccAddress)
+		SetFeeGranterString(feeGranter string)
 		AddAuxSignerData(tx.AuxSignerData) error
 	}
 

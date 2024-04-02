@@ -334,6 +334,17 @@ func (w *wrapper) SetFeeGranter(feeGranter sdk.AccAddress) {
 	w.authInfoBz = nil
 }
 
+func (w *wrapper) SetFeeGranterString(feeGranter string) {
+	if w.tx.AuthInfo.Fee == nil {
+		w.tx.AuthInfo.Fee = &tx.Fee{}
+	}
+
+	w.tx.AuthInfo.Fee.Granter = feeGranter
+
+	// set authInfoBz to nil because the cached authInfoBz no longer matches tx.AuthInfo
+	w.authInfoBz = nil
+}
+
 func (w *wrapper) SetSignatures(signatures ...signing.SignatureV2) error {
 	n := len(signatures)
 	signerInfos := make([]*tx.SignerInfo, n)
